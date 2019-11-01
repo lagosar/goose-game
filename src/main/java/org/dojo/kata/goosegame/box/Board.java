@@ -11,10 +11,16 @@ import java.util.stream.Stream;
 
 import org.dojo.kata.goosegame.engine.CliWriter;
 
+/**
+ * Board class, as physical board of goose game, keeps track of the game status, the position of the players and of special purpose spaces.
+ * 
+ * @author lagos
+ *
+ */
 public class Board {
 
 	Set<Player> players = new HashSet<>();
-	ArrayList<Space> cells;
+	ArrayList<Space> spaces;
 	int boardSize;
 
 	public boolean addPlayer(String playerName) {
@@ -37,7 +43,7 @@ public class Board {
 		int intermediateTarget = movingPlayer.position + diceResult;
 		CliWriter.printPlayerMove(movingPlayer.name, getCellName(playerOriginal), getCellName(intermediateTarget));
 		do {
-			Space space = cells.get(intermediateTarget);
+			Space space = spaces.get(intermediateTarget);
 			boardEffect = space.getSpaceRule().apply(diceResult);
 			intermediateTarget = intermediateTarget + boardEffect;
 			CliWriter.printBoardEffect(movingPlayer.name, space.getPrintTemplate(), getCellName(intermediateTarget));
@@ -75,21 +81,21 @@ public class Board {
 	}
 
 	private String getCellName(final int space) {
-		return cells.get(space).getName() != null ? cells.get(space).getName() : space + "";
+		return spaces.get(space).getName() != null ? spaces.get(space).getName() : space + "";
 	}
 
 	public Board(int size, int bridgePosition, int bridgeGap, List<Integer> gooses) {
-		cells = Stream.generate(Space::new).limit(size).collect(toCollection(ArrayList::new));
+		spaces = Stream.generate(Space::new).limit(size).collect(toCollection(ArrayList::new));
 		this.boardSize = size;
 
-		cells.add(0, new Space() {
+		spaces.add(0, new Space() {
 			@Override
 			public String getName() {
 				return "Start";
 			}
 		});
 
-		cells.add(bridgePosition, new Space() {
+		spaces.add(bridgePosition, new Space() {
 			@Override
 			public String getName() {
 				return "The Bridge";
@@ -112,7 +118,7 @@ public class Board {
 
 		});
 
-		cells.add(size - 1, new Space() {
+		spaces.add(size - 1, new Space() {
 			@Override
 			public String getName() {
 				return "Winning Cell";
@@ -120,7 +126,7 @@ public class Board {
 
 		});
 
-		gooses.forEach(i -> cells.add(i, new Space() {
+		gooses.forEach(i -> spaces.add(i, new Space() {
 			@Override
 			public String getName() {
 				return i + ", The Goose ";
@@ -145,7 +151,7 @@ public class Board {
 	}
 
 	public Space getCell(int position) {
-		return cells.get(position);
+		return spaces.get(position);
 	}
 
 }

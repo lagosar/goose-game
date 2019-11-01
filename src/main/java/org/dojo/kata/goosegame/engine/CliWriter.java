@@ -7,6 +7,12 @@ import java.util.stream.Collectors;
 
 import org.dojo.kata.goosegame.box.Player;
 
+/**
+ * Unified access point for output.
+ * 
+ * @author lagos
+ *
+ */
 public final class CliWriter {
 
 	private static final PrintStream printStream = new PrintStream(System.out);

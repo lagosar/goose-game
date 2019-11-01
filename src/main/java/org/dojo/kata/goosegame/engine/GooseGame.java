@@ -12,7 +12,12 @@ import org.dojo.kata.goosegame.box.Board;
 import org.dojo.kata.goosegame.box.Dice;
 import org.dojo.kata.goosegame.box.Player;
 
-//TODO code documentation
+/**
+ * Goose game is responsible to read game configuration and manage player commands input.
+ * 
+ * @author lagos
+ *
+ */
 public class GooseGame {
 
 	GooseConfiguration conf = new GooseConfiguration();
