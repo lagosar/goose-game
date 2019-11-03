@@ -2,14 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.kata.programming.dojo</groupId>
 	<artifactId>goose-game</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>Goose Game</name>
 	<description>Goose Game programming Dojo</description>
 	<scm>
 		<url>https://github.com/lagosar/goose-game</url>
 		<!-- <connection>scm:git:git://github.com/kevinsawicki/github-maven-example.git</connection> -->
 		<developerConnection>scm:git:git@github.com:lagosar/goose-game.git</developerConnection>
-	  <tag>goose-game-0.0.1</tag>
+	  <tag>HEAD</tag>
   </scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
