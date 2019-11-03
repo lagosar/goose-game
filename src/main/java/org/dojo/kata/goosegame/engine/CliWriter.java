@@ -72,4 +72,19 @@ public final class CliWriter {
 		printStream.println();
 	}
 
+	public static void printHelp() {
+		printStream.println(
+				"Goose game is a game where two or more players move pieces around a track by rolling a die. "
+				+ "The aim of the game is to reach square number sixty-three before any of the other players and avoid obstacles. "
+				+ "([wikipedia](https://en.wikipedia.org/wiki/Game_of_the_Goose))");
+		printStream.println("You may add as many players as you want by typing: \"add player <player name>\"");
+		printStream.println("To perform a player's turn you can type: \"move <player name> <dice_1_result>, <dice_2_result>\"");
+		printStream.println("You may also let the game throw the dices for you by typing: \"move <player name>\"");
+		printStream.println("Have fun!");
+		
+	
+		
+		
+	}
+
 }

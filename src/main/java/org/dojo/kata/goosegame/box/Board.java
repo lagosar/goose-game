@@ -129,7 +129,7 @@ public class Board {
 		gooses.forEach(i -> spaces.add(i, new Space() {
 			@Override
 			public String getName() {
-				return i + ", The Goose ";
+				return i + ", The Goose";
 			}
 
 			@Override

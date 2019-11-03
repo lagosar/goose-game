@@ -13,7 +13,8 @@ import org.dojo.kata.goosegame.box.Dice;
 import org.dojo.kata.goosegame.box.Player;
 
 /**
- * Goose game is responsible to read game configuration and manage player commands input.
+ * Goose game is responsible to read game configuration and manage player
+ * commands input.
  * 
  * @author lagos
  *
@@ -33,7 +34,6 @@ public class GooseGame {
 	};
 
 	GooseOperationExecutor mover = (arguments) -> {
-
 		Player movingPlayer = board.getPlayer(arguments[0].trim());
 		int span = 0;
 		int[] diceResults = null;
@@ -46,6 +46,11 @@ public class GooseGame {
 		span = IntStream.of(diceResults).sum();
 		return board.movePlayer(movingPlayer, span);
 	};
+	
+	GooseOperationExecutor helper = (arguments) -> {
+		CliWriter.printHelp();
+		return true;
+	};
 
 	public GooseGame() {
 		dices = new ArrayList<>();
@@ -54,6 +59,7 @@ public class GooseGame {
 		}
 		executors.put("add player", playerAdd);
 		executors.put("move", mover);
+		executors.put("h", helper);
 	}
 
 	public boolean execute(String operation) {
@@ -62,22 +68,18 @@ public class GooseGame {
 		GooseOperationExecutor executor = null;
 		try {
 			key = executors.keySet().stream().filter(s -> operation.startsWith(s)).findFirst().get();
+			executor = executors.get(key);
 		} catch (NoSuchElementException e) {
 			CliWriter.printError("Sorry, unknown command.");
 			return true;
 		}
-		try {
-			executor = executors.get(key);
-		} catch (NoSuchElementException e) {
-			CliWriter.printError("Sorry, unknown element: " + e.getMessage());
-			return true;
-		}
+		
 		String[] arguments = operation.replace(key, "").trim().split("\\s+|,\\s?|\\.\\s*");
 		boolean gameContinues = true;
 		try {
 			gameContinues = executor.execute(arguments);
 		} catch (RuntimeException e) {
-			CliWriter.printError("Error in parameters. " + e.getMessage());
+			CliWriter.printError("Error in given parameters.");
 		}
 		return gameContinues;
 
