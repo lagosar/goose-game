@@ -5,7 +5,7 @@ This kata has been invented by [Matteo Vaccari](https://github.com/xpmatteo), yo
 
 # Run the game
 You must have Java 8 or later installed.
-Download the jar goose-game-<LATEST>-shaded.jar file of the latest release, then double-click it.
+Download the jar goose-game-<LATEST>-shaded.jar file (https://github.com/lagosar/goose-game/releases/download/goose-game-0.0.1/goose-game-0.0.1-shaded.jar) of the latest release, then double-click it.
 If it does not work on your system, open a shell, cd to jar location then use the command:
- java -jar goose-game-0.0.1-SNAPSHOT-shaded.jar
+ java -jar goose-game-<latest>-shaded.jar
 (Windows, Linux, Mac alike)
